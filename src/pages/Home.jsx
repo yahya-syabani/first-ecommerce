@@ -21,7 +21,7 @@ function Home() {
         <div>
           <img src={HeroImage} alt="" />
           <div>
-            <p>Yahya</p>
+            <p>Yahya S</p>
           </div>
         </div>
       </div>
