@@ -18,6 +18,12 @@ function Home() {
             ))}
           </ul>
         </div>
+        <div>
+          <img src={HeroImage} alt="" />
+          <div>
+            <p>Yahya</p>
+          </div>
+        </div>
       </div>
     </div>
   );
