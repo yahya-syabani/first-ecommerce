@@ -1,8 +1,10 @@
 import React from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const products = useSelector((state) => state.cart.products);
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 md:px-16 lg:px-24">
@@ -20,8 +22,13 @@ function Navbar() {
           </form>
         </div>
         <div className="flex items-center space-x-4">
-          <Link to="/cart">
+          <Link to="/cart" className="relative">
             <FaShoppingCart className="text-lg" />
+            {products.length > 0 && (
+              <span className="absolute left-3 top-0 flex w-3 items-center justify-center rounded-full bg-red-600 text-xs text-white">
+                {products.length}
+              </span>
+            )}
           </Link>
           <button className="hidden md:block">Login | Register</button>
           <button className="block md:hidden">
