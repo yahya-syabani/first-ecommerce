@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ isModelOpen, setIsModelOpen }) => {
+const Modal = ({ isModelOpen, setIsModelOpen, children }) => {
   if (!isModelOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
@@ -11,7 +11,7 @@ const Modal = ({ isModelOpen, setIsModelOpen }) => {
         >
           &times;
         </button>
-        <div>children</div>
+        {children}
       </div>
     </div>
   );
