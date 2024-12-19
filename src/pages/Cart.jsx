@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { FaCartArrowDown, FaTrashAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "../components/Modal";
 import ChangeAddress from "../components/ChangeAddress";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const [address, setAdress] = useState("address");
+  const [address, setAddress] = useState("address");
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="container mx-auto min-h-96 px-4 py-8 md:px-16 lg:px-24">
@@ -46,12 +54,29 @@ const Cart = () => {
                     <div className="flex items-center space-x-12">
                       <p>${products.price}</p>
                       <div className="flex w-24 items-center justify-center border">
-                        <button className="px-1 text-xl">-</button>
+                        <button
+                          onClick={() =>
+                            dispatch(decreaseQuantity(products.id))
+                          }
+                          className="px-1 text-xl"
+                        >
+                          -
+                        </button>
                         <p className="px-3 text-xl">{products.quantity}</p>
-                        <button className="px-1 text-xl">+</button>
+                        <button
+                          onClick={() =>
+                            dispatch(increaseQuantity(products.id))
+                          }
+                          className="px-1 text-xl"
+                        >
+                          +
+                        </button>
                       </div>
                       <p>${(products.quantity * products.price).toFixed(2)}</p>
-                      <button className="pr-3 text-red-500 hover:text-red-700">
+                      <button
+                        onClick={() => dispatch(removeFromCart(products.id))}
+                        className="pr-3 text-red-500 hover:text-red-700"
+                      >
                         <FaTrashAlt />
                       </button>
                     </div>
@@ -80,14 +105,17 @@ const Cart = () => {
                 <span>Total Price:</span>
                 <span>${cart.totalPrice.toFixed(2)}</span>
               </div>
-              <button className="w-full bg-red-600 py-2 text-white hover:bg-red-800">
+              <button
+                onClick={() => navigate("/checkout")}
+                className="w-full bg-red-600 py-2 text-white hover:bg-red-800"
+              >
                 Proceed to checkout
               </button>
             </div>
           </div>
           <Modal isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen}>
             <ChangeAddress
-              setAdress={setAdress}
+              setAddress={setAddress}
               setIsModelOpen={setIsModelOpen}
             />
           </Modal>

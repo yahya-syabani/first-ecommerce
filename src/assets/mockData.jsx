@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import Image from "../assets/Images/Product.png";
 
 export const Categories = [
