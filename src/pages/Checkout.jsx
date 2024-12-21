@@ -6,6 +6,8 @@ const Checkout = () => {
   const [shippingToggle, setShippingToggle] = useState(false);
   const [paymentToggle, setPaymentToggle] = useState(false);
 
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+
   return (
     <div className="container mx-auto min-h-96 px-4 py-8 md:px-16 lg:px-24">
       <h3 className="mb-4 text-2xl font-semibold">Order Summary</h3>
@@ -121,44 +123,48 @@ const Checkout = () => {
               <h3 className="mb-2 text-lg font-semibold">Payment Method</h3>
               {paymentToggle ? <FaAngleDown /> : <FaAngleUp />}
             </div>
+
             <div className={`space-y-4 ${paymentToggle ? "" : "hidden"}`}>
               <div className="mb-2 flex items-center">
-                <label className="block text-gray-700" htmlFor="">
-                  Name
-                </label>
                 <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter Name"
-                  className="w-full border px-3 py-2"
+                  type="radio"
+                  name="payemnt"
+                  checked={paymentMethod === "Cash on Delivery"}
+                  onChange={() => setPaymentMethod("Cash on Delivery")}
                 />
+                <label className="ml-2 block text-gray-700">
+                  Cash on Delivery
+                </label>
               </div>
 
               <div>
-                <div>
-                  <label className="block text-gray-700" htmlFor="">
-                    Email
-                  </label>
+                <div className="mb-2 flex items-center">
                   <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter Email"
-                    className="w-full border px-3 py-2"
+                    type="radio"
+                    name="payemnt"
+                    checked={paymentMethod === "Debit Card"}
+                    onChange={() => setPaymentMethod("Debit Card")}
                   />
+                  <label className="ml-2 block text-gray-700">Debit Card</label>
                 </div>
-              </div>
-              <div>
-                <div>
-                  <label className="block text-gray-700" htmlFor="">
-                    Phone
-                  </label>
-                  <input
-                    type="phone"
-                    name="phone"
-                    placeholder="Enter Phone"
-                    className="w-full border px-3 py-2"
-                  />
-                </div>
+                {paymentMethod === "Cash on Deliver" && (
+                  <div>
+                    <h3>Debit Card Information</h3>
+                    <div>
+                      <label htmlFor="">Card Number</label>
+                      <input type="text" />
+                    </div>
+                    <div>
+                      <label htmlFor="">Carholder Name</label>
+                      <input type="text" />
+                    </div>
+                    <div>
+                      <div>
+                        <label htmlFor="">Expired Day</label>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
