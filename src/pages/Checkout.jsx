@@ -147,20 +147,66 @@ const Checkout = () => {
                   />
                   <label className="ml-2 block text-gray-700">Debit Card</label>
                 </div>
-                {paymentMethod === "Cash on Deliver" && (
-                  <div>
-                    <h3>Debit Card Information</h3>
-                    <div>
-                      <label htmlFor="">Card Number</label>
-                      <input type="text" />
+                {paymentMethod === "Cash on Delivery" && (
+                  <div className="mb-4 rounded-lg bg-gray-100 p-4">
+                    <h3 className="mb-4 text-xl font-semibold">
+                      Debit Card Information
+                    </h3>
+                    <div className="mb-4">
+                      <label
+                        className="mb-2 block font-semibold text-gray-700"
+                        htmlFor=""
+                      >
+                        Card Number
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Enter Card Number"
+                        className="w-full rounded border p-2"
+                        required
+                      />
                     </div>
-                    <div>
-                      <label htmlFor="">Carholder Name</label>
-                      <input type="text" />
+                    <div className="mb-4">
+                      <label
+                        className="mb-2 block font-semibold text-gray-700"
+                        htmlFor=""
+                      >
+                        Carholder Name
+                      </label>
+                      <input
+                        placeholder="Enter Card Holder Name"
+                        className="w-full rounded border p-2"
+                        type="text"
+                      />
                     </div>
-                    <div>
-                      <div>
-                        <label htmlFor="">Expired Day</label>
+                    <div className="mb-4 flex justify-between">
+                      <div className="mr-2 w-1/2">
+                        <label
+                          className="mb-2 block font-semibold text-gray-700"
+                          htmlFor=""
+                        >
+                          Expire Date
+                        </label>
+                        <input
+                          placeholder="MM/YY"
+                          type="text"
+                          className="w-full rounded border p-2"
+                          required
+                        />
+                      </div>
+                      <div className="ml-2 w-1/2">
+                        <label
+                          className="mb-2 block font-semibold text-gray-700"
+                          htmlFor=""
+                        >
+                          CVV
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="CVV"
+                          className="w-full rounded border p-2"
+                          required
+                        />
                       </div>
                     </div>
                   </div>
